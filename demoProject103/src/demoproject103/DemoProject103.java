@@ -16,6 +16,11 @@ public class DemoProject103 {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+       VeryLongInteger v1=new VeryLongInteger("123123123345454545");
+         VeryLongInteger v2=new VeryLongInteger("1");
+         v1.trim(v2);
+         System.out.println(v1);
+         System.out.println(v2);
     }
     
 }
