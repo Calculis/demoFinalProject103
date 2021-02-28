@@ -4,7 +4,8 @@
  * and open the template in the editor.
  */
 package demoproject103;
-
+import java.util.ArrayList;
+import java.util.Arrays;
 /**
  *
  * @author phunon
@@ -16,11 +17,15 @@ public class DemoProject103 {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-       VeryLongInteger v1=new VeryLongInteger("123123123345454545");
-         VeryLongInteger v2=new VeryLongInteger("1");
-         v1.trim(v2);
-         System.out.println(v1);
-         System.out.println(v2);
+     VeryLongInteger b1=new VeryLongInteger("30000000");
+     VeryLongInteger b2=new VeryLongInteger("1200000000000000");
+    
+        System.out.println(b1);
+        System.out.println(b2);
+        System.out.println(b1.sum(b2));
+        System.out.println(b2.sum(b1));
+      
+       
     }
     
 }

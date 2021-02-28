@@ -9,7 +9,7 @@ import java.util.ArrayList;
  *
  * @author phunon
  */
-public class VeryLongInteger implements DataSet{
+public class VeryLongInteger  implements DataSet{
 
     ArrayList<Integer> veryLongInteger=new ArrayList<>();
 
@@ -19,17 +19,59 @@ public class VeryLongInteger implements DataSet{
     
     
     @Override
-    public Object sum(Object numSet) {
+    public VeryLongInteger sum(Object numSet) {
         VeryLongInteger numSet2=(VeryLongInteger) numSet;
+        boolean exceed=false;
         trim(numSet2);
+        ArrayList<Integer> result=zeroArray(this.veryLongInteger.size());
+        int buffer=0;
         
-      
+        for(int i=(this.veryLongInteger.size()-1);i>=0;i--){ // biggest loop
+            //condition
+             buffer=this.veryLongInteger.get(i)+numSet2.veryLongInteger.get(i);
+             if(i==0&& (buffer>=10||(buffer+1>=10&& exceed))){
+                 if(exceed){
+                     result.set(i,buffer-10+1);
+                     result.add(0,1);
+                 }
+                 else{
+                     result.set(i, buffer-10);
+                     result.add(0,1);
+                 }
+             }
+             else if(buffer+1>=10 && exceed){
+               result.set(i, buffer-10+1);
+               exceed=true;
+               
+            }
+           else if(buffer+1<10 && exceed){
+               result.set(i, buffer+1);
+               exceed=false;
+           }
+           else if(buffer<10 && !exceed){
+               result.set(i, buffer);
+               exceed=false;
+           }
+           else if(buffer>=10){
+               result.set(i,buffer-10);
+               exceed=true;
+           }
+            
+            
+        }
+        
+      String temp="";
+      for(int a:result){
+          temp+= String.valueOf(a);
+      }
+      VeryLongInteger v=new VeryLongInteger(temp);
+      v.trimOut(v);
        
-       return 1;
+       return v;
     }
 
     @Override
-    public Object minus(Object numSet) {
+    public VeryLongInteger minus(Object numSet) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -50,6 +92,7 @@ public class VeryLongInteger implements DataSet{
 
     @Override
     public String toString() {
+//        trimOut(this);
         String temp="";
         for(int a:veryLongInteger){
             temp+=a;
@@ -75,7 +118,7 @@ public class VeryLongInteger implements DataSet{
         return veryLongInteger;
     }
     public void trim(VeryLongInteger e){
-       
+       if(e.getVeryLongInteger().size()==this.veryLongInteger.size()) return;
             while(e.getVeryLongInteger().size()>this.veryLongInteger.size()){
                 this.veryLongInteger.add(0,0);
             }
@@ -96,6 +139,21 @@ public class VeryLongInteger implements DataSet{
        VeryLongInteger a=(VeryLongInteger) temp;
          return a;
        
+    }
+    public void trimOut(VeryLongInteger e){
+        
+        int terminate=0;
+        
+        for(int i=0;i<e.veryLongInteger.size();i++){
+            if(e.veryLongInteger.get(i)!=0){
+                terminate=i;
+                break;
+            }
+            
+        }
+        for(int k=0;k<terminate;k++){
+            e.veryLongInteger.remove(k);
+      }
     }
     
 }
