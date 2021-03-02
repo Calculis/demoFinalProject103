@@ -19,18 +19,9 @@ public class DemoProject103 {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        VeryLongInteger b1 = new VeryLongInteger("30000000");
-        VeryLongInteger b2 = new VeryLongInteger("1200000000000000");
-        VeryLongInteger a1 = new VeryLongInteger("4000");
-        VeryLongInteger a2 = new VeryLongInteger("2000");
-
-        System.out.println(b1);
-        System.out.println(b2);
-        System.out.println(b1.sum(b2));
-        System.out.println(b2.sum(b1).setFormat());
-        System.out.println(a1.sum(a2).setFormat());
-        System.out.println(a1.setFormat());
-
+        VeryLongInteger b1 = new VeryLongInteger("3000000000000000000000000000");
+        VeryLongInteger b2 = new VeryLongInteger("12000000000000000000000000000000000000000");
+        System.out.println( b1.setFormat() + "\n+"+b2.setFormat()+"\n="+ b1.sum(b2).setFormat());
     }
 
 }
